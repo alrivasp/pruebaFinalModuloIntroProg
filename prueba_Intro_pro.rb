@@ -5,7 +5,7 @@ require 'json'
 #Metodo Cosumo de api
 def request url_requested, api_key
     #capturad de url
-    url = URI(url_requested+api_key)    
+    url = URI(url_requested+"sol=1000&camera=fhaz&api_key=#{api_key}")    
     #Seguridad de conexion
     https = Net::HTTP.new(url.host, url.port);    
     https.use_ssl = true
@@ -41,9 +41,9 @@ def photos_count list_hash
     result    
 end
 #key de prueba
-api_key = "DEMO_KEY"
-#key personal
-#api_key = "xfZ3vtvveUj0tkuBBz5rQu312e1FaPw5XRRdPrBd"
-buid_web_page(request("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz&api_key=",api_key))
-print photos_count(request("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=fhaz&api_key=",api_key))
+#api_key = "DEMO_KEY"
+#key personal en caso que se hagan mas de 50 consultas a la api en 24 horas
+api_key = "xfZ3vtvveUj0tkuBBz5rQu312e1FaPw5XRRdPrBd"
+buid_web_page(request("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?",api_key))
+print photos_count(request("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?",api_key))
 
